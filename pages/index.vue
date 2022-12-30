@@ -2,6 +2,7 @@
   <div>
     <h2>This is the Index Page</h2>
     <p>{{ a }}</p>
+    <ChatieLogo />
   </div>
 </template>
 
