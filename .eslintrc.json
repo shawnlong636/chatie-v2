@@ -3,11 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "@nuxtjs/eslint-config-typescript",
-    "plugin:nuxt/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["@nuxtjs/eslint-config-typescript", "plugin:nuxt/recommended"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",

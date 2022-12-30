@@ -1,7 +1,10 @@
 <template>
-  <div>This is the Index Page</div>
+  <div>
+    <p>This is the Index Page</p>
+    <div>{{ a }}</div>
+  </div>
 </template>
+
 <script setup lang="ts">
 const a = 'hey there'
-return { a }
 </script>
