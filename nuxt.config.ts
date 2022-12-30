@@ -7,11 +7,18 @@ export default defineNuxtConfig({
     shim: false,
     strict: true
   },
-  css: ['~/assets/scss/main.scss'],
+  css: ['~/assets/main.scss'],
   build: {
     transpile: ['element-plus/es']
   },
   vite: {
-    plugins: [ElementPlus()]
+    plugins: [ElementPlus({ useSource: true })],
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "@/assets/_colors.scss" as *;'
+        }
+      }
+    }
   }
 })
