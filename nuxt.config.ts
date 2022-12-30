@@ -4,6 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   typescript: {
     shim: false,
+    strict: true
   },
-  css: ['~/assets/scss/main.scss'],
+  css: ['~/assets/scss/main.scss']
 })
