@@ -1,3 +1,4 @@
+import ElementPlus from 'unplugin-element-plus/vite'
 import { defineNuxtConfig } from 'nuxt/config'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
@@ -6,5 +7,11 @@ export default defineNuxtConfig({
     shim: false,
     strict: true
   },
-  css: ['~/assets/scss/main.scss']
+  css: ['~/assets/scss/main.scss'],
+  build: {
+    transpile: ['element-plus/es']
+  },
+  vite: {
+    plugins: [ElementPlus()]
+  }
 })

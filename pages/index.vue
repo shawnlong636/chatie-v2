@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>This is the Index Page</p>
-    <div>{{ a }}</div>
+    <h2>This is the Index Page</h2>
+    <p>{{ a }}</p>
   </div>
 </template>
 
