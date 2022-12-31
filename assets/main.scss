@@ -1,6 +1,10 @@
 html {
   color: $black;
-  font-family: "Open Sans", sans-serif;
-  margin: 25px;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
   background-color: $light-accent;
+}
+
+header {
+  height: 0;
 }

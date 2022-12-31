@@ -71,7 +71,6 @@
 
   h2 {
     padding: 0;
-    padding-top: 2.5px;
     margin: 0;
     color: black;
   }
@@ -106,15 +105,6 @@ a {
 
   &:active::after {
     background-color: darken($primary, 25%);
-  }
-
-  &:focus::after {
-    transform: scaleX(1);
-    transform-origin: bottom;
-    outline: none;
-  }
-  &:focus {
-    outline: none;
   }
 }
 </style>

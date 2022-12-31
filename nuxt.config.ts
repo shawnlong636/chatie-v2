@@ -3,11 +3,14 @@ import { defineNuxtConfig } from 'nuxt/config'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+  app: {
+
+  },
   typescript: {
     shim: false,
     strict: true
   },
-  css: ['~/assets/main.scss'],
+  css: ['~/assets/main.scss', '~/assets/el_styles.scss'],
   build: {
     transpile: ['element-plus/es']
   },
