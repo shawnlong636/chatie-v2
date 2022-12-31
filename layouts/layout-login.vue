@@ -1,37 +1,29 @@
 <template>
   <el-container direction="vertical">
     <el-header height="auto">
-      <el-row justify="center">
+      <el-row justify="center" align="middle" style="height: 80px;">
         <el-col :span="8">
-          <chatie-logo class="left-padded bottom-padded" />
+          <chatie-logo />
         </el-col>
       </el-row>
     </el-header>
     <el-main>
       <el-row justify="center">
-        <el-card>
+        <el-col :span="8">
           <slot />
-        </el-card>
+        </el-col>
       </el-row>
     </el-main>
   </el-container>
 </template>
 
 <script setup lang="ts">
-import { ElContainer, ElHeader, ElCard, ElRow, ElCol } from 'element-plus'
+import { ElContainer, ElHeader, ElMain, ElRow, ElCol } from 'element-plus'
 </script>
 
 <style lang="scss">
 .el-card.stretch {
   width: 100%;
   max-width: 100%;
-}
-
-.left-padded {
-  padding-left: 20px;
-}
-
-.bottom-padded {
-  padding-bottom: 20px;
 }
 </style>
