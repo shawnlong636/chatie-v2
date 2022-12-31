@@ -2,7 +2,7 @@
   <div class="menu-bar">
     <ChatieLogo />
     <div class="content">
-      <el-button type="primary">
+      <el-button type="primary" @click="navigateTo('login')">
         Login
       </el-button>
     </div>

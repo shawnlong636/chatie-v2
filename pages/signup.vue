@@ -1,5 +1,5 @@
 <template>
-  <div>Time to login!</div>
+  <div>Time to create a new account</div>
 </template>
 
 <script setup lang="ts">

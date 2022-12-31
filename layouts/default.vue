@@ -7,6 +7,7 @@
     <el-footer />
   </el-container>
 </template>
+
 <script setup lang="ts">
 import { ElHeader, ElMain, ElFooter, ElContainer } from 'element-plus'
 </script>

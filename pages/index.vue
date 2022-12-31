@@ -7,7 +7,7 @@
         </h1>
         <p>{{ card.body }}</p>
       </el-card>
-      <el-button type="primary" href="/login" @click="navigateTo('/login')">
+      <el-button type="primary" @click="navigateTo('signup')">
         Get Started
       </el-button>
     </div>
@@ -17,7 +17,9 @@
 <script setup lang="ts">
 import { ElCard, ElButton } from 'element-plus'
 import Card from 'models/card'
-
+definePageMeta({
+  layout: 'default'
+})
 const cards: Array<Card> = [
   {
     header: '👋 Welcome to Chatie!',
