@@ -1,27 +1,11 @@
 <template>
-  <div class="menu-bar">
+  <div class="grid items-center grid-flow-col p-0 m-0">
     <ChatieLogo />
-    <div class="content">
-      <el-button type="primary" @click="navigateTo('login')">
-        Login
-      </el-button>
-    </div>
+    <button
+      class="w-20 h-8 text-center text-white transition-all rounded justify-self-end bg-accent hover:bg-accent-400 active:bg-accent-600"
+      @click="navigateTo('login')"
+    >
+      Login
+    </button>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ElButton } from 'element-plus'
-</script>
-
-<style lang="scss">
-.menu-bar {
-  display: grid;
-  justify-content: start;
-  align-items: center;
-  grid-template: "Logo Content" auto / auto 1fr;
-
-  .content {
-    justify-self: end;
-  }
-}
-</style>

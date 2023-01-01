@@ -1,13 +1,6 @@
 <template>
-  <el-container>
-    <el-header height="auto">
-      <MenuBar />
-    </el-header>
-    <el-main><slot /></el-main>
-    <el-footer />
-  </el-container>
+  <div class="grid mx-5 mt-3 gap-y-5">
+    <MenuBar />
+    <slot />
+  </div>
 </template>
-
-<script setup lang="ts">
-import { ElHeader, ElMain, ElFooter, ElContainer } from 'element-plus'
-</script>

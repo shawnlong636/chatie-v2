@@ -6,6 +6,7 @@ node_modules
 .output
 .env
 dist
+.vercel
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="chat-container">
-      <el-card v-for="card in cards" :key="card.body" shadow="hover">
+      <!-- <el-card v-for="card in cards" :key="card.body" shadow="hover">
         <h1 v-if="card.header !== ''">
           {{ card.header }}
         </h1>
@@ -9,13 +9,17 @@
       </el-card>
       <el-button type="primary" @click="navigateTo('signup')">
         Get Started
-      </el-button>
+      </el-button> -->
+
+      <p v-for="card in cards" :key="card.body">
+        {{ card.body }}
+      </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElCard, ElButton } from 'element-plus'
+// import { ElCard, ElButton } from 'element-plus'
 import Card from 'models/card'
 definePageMeta({
   layout: 'default'
@@ -39,8 +43,8 @@ const cards: Array<Card> = [
 ]
 </script>
 
-<style scoped lang="scss">
-h1 {
+<style scoped>
+/* h1 {
   padding: 0;
   margin: 0;
 }
@@ -66,5 +70,5 @@ h1 {
 
 .el-button {
   justify-self: end;
-}
+} */
 </style>
