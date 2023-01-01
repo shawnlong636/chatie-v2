@@ -10,7 +10,12 @@ export default defineNuxtConfig({
       title: 'chatie',
       meta: [
         { name: 'lang', content: 'en' },
-        { name: 'description', content: '' }
+        {
+          name: 'description',
+          content: '👋 Welcome to Chatie! We\'re excited to ' +
+          'provide you with a fast, reliable, and secure way ' +
+          'to communicate with your friends and loved ones.'
+        }
       ]
     }
   },
