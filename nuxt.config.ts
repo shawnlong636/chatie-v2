@@ -8,8 +8,10 @@ export default defineNuxtConfig({
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       title: 'chatie',
+      htmlAttrs: {
+        lang: 'en'
+      },
       meta: [
-        { name: 'lang', content: 'en' },
         {
           name: 'description',
           content: '👋 Welcome to Chatie! We\'re excited to ' +
