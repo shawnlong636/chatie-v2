@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       title: 'chatie',
       meta: [
+        { name: 'lang', content: 'en' },
         { name: 'description', content: '' }
       ]
     }
