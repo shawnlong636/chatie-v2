@@ -26,7 +26,10 @@ export default defineNuxtConfig({
     shim: false,
     strict: true
   },
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/robots'
+  ],
   nitro: {
     preset: 'vercel-edge'
   }
