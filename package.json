@@ -43,5 +43,8 @@
     "vitest": "^0.26.2",
     "vue-tsc": "^1.0.18"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@heroicons/vue": "^2.0.13",
+    "@tailwindcss/forms": "^0.5.3"
+  }
 }

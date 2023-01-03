@@ -6,7 +6,9 @@
       </div>
       {{ card.body }}
       <div v-if="card.buttonText !== undefined">
-        <PrimaryButton class="mt-1" :text="card.buttonText" />
+        <PrimaryButton class="mt-1" @click="navigateTo('register')">
+          {{ card.buttonText }}
+        </PrimaryButton>
       </div>
     </div>
   </div>
