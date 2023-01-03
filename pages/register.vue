@@ -1,6 +1,6 @@
 <template>
-  <div class="container grid items-center min-h-full grid-flow-col grid-cols-1 gap-5 sm:mt-5 md:mt-10 md:grid-cols-2 justify-self-center">
-    <div class="hidden px-8 py-5 align-middle justify-stretch md:grid rounded-xl">
+  <div class="container grid items-center grid-flow-col grid-cols-1 gap-5 sm:mt-5 md:mt-10 md:grid-cols-2 justify-self-center">
+    <div class="hidden px-8 py-5 justify-stretch md:grid rounded-xl">
       <ChatieLogo class="ml-8 justify-self-start" />
       <div class="mt-6 grid grid-rows-3 grid-cols-[auto_1fr] grid-flow-row-dense gap-y-5 gap-x-2">
         <CheckCircleIcon v-for="card in cards" :key="card.body" class="w-5 col-span-1 col-start-1 mt-1 text-accent justify-self-center" />
