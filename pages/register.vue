@@ -5,9 +5,9 @@
     </div>
 
     <div class="grid max-w-xl px-8 py-5 mx-0 bg-white sm:mx-5 md:mx-0 gap-y-5 rounded-xl">
-      <ChatieLogo class="jutify-self-center" />
+      <ChatieLogo class="justify-self-center" :show-title="false" />
       <div class="text-2xl font-semibold text-center">
-        Create your account
+        Create your Chatie account
       </div>
       <div class="grid">
         <label for="First Name">First Name</label>
