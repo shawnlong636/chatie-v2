@@ -28,7 +28,11 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/robots'
+    '@nuxtjs/robots',
+    ['@nuxtjs/google-fonts', {
+      families: { Inter: true },
+      display: 'fallback'
+    }]
   ],
   nitro: {
     preset: 'vercel-edge'
