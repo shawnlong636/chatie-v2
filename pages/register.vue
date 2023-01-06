@@ -15,37 +15,57 @@
       </div>
     </div>
 
-    <div class="grid max-w-xl px-8 py-5 pb-10 mx-0 bg-white sm:mx-5 md:mx-0 gap-y-5 rounded-xl">
+    <div class="grid max-w-xl px-8 py-5 pb-10 mx-0 bg-white sm:mx-5 md:mx-0 gap-y-4 rounded-xl">
       <ChatieLogo class="md:hidden justify-self-center" :show-title="true" />
       <div class="text-2xl font-semibold text-center">
         Create your account
       </div>
-      <div class="grid gap-5 md:grid-flow-col">
-        <div class="grid">
+      <div class="grid items-start gap-5 md:grid-flow-col">
+        <div class="grid items-start ">
           <label for="first-name" class="text-sm font-medium">First Name</label>
-          <input
-            id="first-name"
-            v-model="firstName"
-            placeholder="John"
-            name="first-name"
-            type="text"
-            autocomplete="given-name"
-            required
-            class="w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent"
-          >
+          <div class="relative">
+            <input
+              id="first-name"
+              v-model.lazy="firstName"
+              placeholder="John"
+              name="first-name"
+              type="text"
+              autocomplete="given-name"
+              required
+              :class="{
+                'w-full max-w-full pr-6 h-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': firstnameErrors,
+                'w-full max-w-full pr-6 h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !firstnameErrors
+              }"
+            >
+            <ExclamationCircleIcon v-if="firstnameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
+            <CheckCircleIcon v-if="!firstnameErrors && firstNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+          </div>
+          <div class="pt-1 pl-2 text-xs text-red-500 ">
+            {{ firstnameErrors }}
+          </div>
         </div>
         <div class="grid">
           <label for="last-name" class="text-sm font-medium">Last Name</label>
-          <input
-            id="last-name"
-            v-model="lastName"
-            placeholder="Smith"
-            name="last-name"
-            type="text"
-            autocomplete="family-name"
-            required
-            class="w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent"
-          >
+          <div class="relative">
+            <input
+              id="last-name"
+              v-model.lazy="lastName"
+              placeholder="Smith"
+              name="last-name"
+              type="text"
+              autocomplete="family-name"
+              required
+              :class="{
+                'w-full max-w-full pr-6 h-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': lastNameErrors,
+                'w-full max-w-full pr-6 h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !lastNameErrors
+              }"
+            >
+            <ExclamationCircleIcon v-if="lastNameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
+            <CheckCircleIcon v-if="!lastNameErrors && lastNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+          </div>
+          <div class="pt-1 pl-2 text-xs text-red-500">
+            {{ lastNameErrors }}
+          </div>
         </div>
       </div>
 
@@ -55,50 +75,76 @@
           <EnvelopeIcon class="absolute flex items-center w-5 h-full ml-2 text-gray-400 cursor-pointer" />
           <input
             id="email-address"
-            v-model="email"
+            v-model.lazy="email"
             placeholder="you@example.com"
             name="email"
             type="email"
             autocomplete="email"
             required
-            class="w-full h-8 pl-8 text-sm rounded-md focus:ring-accent focus:border-accent"
+            :class="{
+              'w-full h-8 pl-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': emailErrors,
+              'w-full h-8 pl-8 text-sm rounded-md focus:ring-accent focus:border-accent': !emailErrors
+            }"
           >
+          <ExclamationCircleIcon v-if="emailErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
+          <CheckCircleIcon v-if="!emailErrors && emailMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+        </div>
+        <div class="pt-1 pl-2 text-xs text-red-500">
+          {{ emailErrors }}
         </div>
       </div>
       <div class="grid">
         <label for="password" class="text-sm font-medium">Password</label>
-        <input
-          id="password"
-          v-model="password"
-          name="password"
-          type="password"
-          required
-          class="w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent"
-        >
+        <div class="relative">
+          <input
+            id="password"
+            v-model.lazy="password"
+            name="password"
+            :type="passwordType"
+            placeholder="Enter a password"
+            required
+            :class="{
+              'w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !passwordErrors,
+              'w-full h-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': passwordErrors
+            }"
+          >
+          <EyeIcon v-if="passwordType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
+          <EyeSlashIcon v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
+          <ExclamationCircleIcon v-if="passwordErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-red-500" />
+          <CheckCircleIcon v-if="!passwordErrors && passwordMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-green-500" />
+        </div>
+        <div class="pt-1 pl-2 text-xs text-red-500">
+          {{ passwordErrors }}
+        </div>
       </div>
       <div class="grid">
-        <label for="password-confirmation">Confirm Password</label>
-        <input
-          id="password-confirmation"
-          v-model="confirm"
-          name="password-confirmation"
-          type="password"
-          required
-          class="w-full h-8 rounded-md focus:ring-accent focus:border-accent"
-        >
+        <label for="password-confirmation" class="text-sm font-medium">Confirm Password</label>
+        <div class="relative">
+          <input
+            id="password-confirmation"
+            v-model.lazy="confirm"
+            placeholder="Enter a password"
+            name="password-confirmation"
+            :type="confirmType"
+            required
+            :class="{
+              'w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !confirmErrors,
+              'w-full border-red-500 h-8 text-sm rounded-md focus:ring-red-500 focus:border-red-500': confirmErrors
+            }"
+          >
+          <EyeIcon v-if="confirmType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowConfirm" />
+          <EyeSlashIcon v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowConfirm" />
+          <ExclamationCircleIcon v-if="confirmErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-red-500" />
+          <CheckCircleIcon v-if="!confirmErrors && confirmMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-green-500" />
+        </div>
+        <div class="pt-1 pl-2 text-xs text-red-500">
+          {{ confirmErrors }}
+        </div>
       </div>
       <div class="text-sm font-thin justify-self-center">
         Already have an account? <NuxtLink to="/login" class="text-sm font-medium text-accent-500 hover:underline">
           Sign In
         </NuxtLink>
-      </div>
-      <div v-if="Object.keys(errors).length" class="px-3 py-2 bg-gray-200 rounded-md shadow-inner">
-        <h5 class="p-0 m-0 font-bold text-gray-800 text-md">
-          Errors
-        </h5>
-        <p class="relative p-0 m-0 font-mono text-sm text-gray-600">
-          {{ errors }}
-        </p>
       </div>
 
       <PrimaryButton class="min-w-[75%] min-h-[40px] justify-self-center" @click="onSubmit">
@@ -110,7 +156,7 @@
 </template>
 
 <script setup lang="ts">
-import { LockClosedIcon, CheckCircleIcon } from '@heroicons/vue/20/solid'
+import { LockClosedIcon, CheckCircleIcon, ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
 import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
@@ -136,23 +182,36 @@ const cards: Array<Card> = [
 ]
 
 const schema = yup.object({
-  firstName: yup.string().required().label('First Name'),
-  lastName: yup.string().required().label('Last Name'),
-  email: yup.string().required().email().label('Email Address'),
-  password: yup.string().password().required().label('Password'),
-  confirm: yup.string().password().required().oneOf([yup.ref('password')], 'Passwords must match')
+  firstName: yup.string().required('Please enter your first name'),
+  lastName: yup.string().required('Please enter your last name'),
+  email: yup.string().required('Please enter your email').email('Your email must be valid'),
+  password: yup.string().password().required('Please enter a password'),
+  confirm: yup.string().password().required('Please confirm your password').oneOf([yup.ref('password')], 'Your password doesn\'t match')
 })
 
-const { handleSubmit, errors } = useForm({
+const { handleSubmit } = useForm({
   validationSchema: schema
 })
-const { value: firstName } = useField<string>('firstName')
-const { value: lastName } = useField<string>('lastName')
-const { value: email } = useField<string>('email')
-const { value: password } = useField<string>('password')
-const { value: confirm } = useField<string>('confirm')
 
-const onSubmit = handleSubmit((value) => {
-  alert(JSON.stringify(value))
+const passwordType = ref<string>('password')
+const confirmType = ref<string>('password')
+
+const toggleShowPassword = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
+
+const toggleShowConfirm = () => {
+  confirmType.value = confirmType.value === 'password' ? 'text' : 'password'
+}
+
+const { value: firstName, errorMessage: firstnameErrors, meta: firstNameMeta } = useField<string>('firstName')
+const { value: lastName, errorMessage: lastNameErrors, meta: lastNameMeta } = useField<string>('lastName')
+const { value: email, errorMessage: emailErrors, meta: emailMeta } = useField<string>('email')
+const { value: password, errorMessage: passwordErrors, meta: passwordMeta } = useField<string>('password')
+const { value: confirm, errorMessage: confirmErrors, meta: confirmMeta } = useField<string>('confirm')
+
+const onSubmit = handleSubmit(() => {
+  // alert(JSON.stringify(value))
+  alert('Form Successfully Submitted')
 })
 </script>

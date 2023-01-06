@@ -9,7 +9,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["vue", "vitest"],
+  "plugins": ["vitest"],
   "rules": {
     "semi": 2
   }

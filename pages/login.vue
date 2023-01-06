@@ -6,32 +6,59 @@
         Sign in to your account
       </div>
       <div class="grid">
-        <label for="email-address">Email Address</label>
-        <input
-          id="email-address"
-          name="email"
-          type="email"
-          autocomplete="email"
-          required
-          class="w-full h-8 rounded-md focus:ring-accent focus:border-accent"
-        >
+        <label for="email-address" class="text-sm font-medium">Email Address</label>
+        <div class="relative">
+          <EnvelopeIcon class="absolute flex items-center w-5 h-full ml-2 text-gray-400 cursor-pointer" />
+          <input
+            id="email-address"
+            v-model.lazy="email"
+            placeholder="you@example.com"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            :class="{
+              'w-full h-8 pl-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': emailErrors,
+              'w-full h-8 pl-8 text-sm rounded-md focus:ring-accent focus:border-accent': !emailErrors
+            }"
+          >
+          <ExclamationCircleIcon v-if="emailErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
+          <CheckCircleIcon v-if="!emailErrors && emailMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+        </div>
+        <div class="pt-1 pl-2 text-xs text-red-500">
+          {{ emailErrors }}
+        </div>
       </div>
       <div class="grid">
-        <label for="password">Password</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          required
-          class="w-full h-8 rounded-md focus:ring-accent focus:border-accent"
-        >
+        <label for="password" class="text-sm font-medium">Password</label>
+        <div class="relative">
+          <input
+            id="password"
+            v-model.lazy="password"
+            name="password"
+            :type="passwordType"
+            placeholder="Enter a password"
+            required
+            :class="{
+              'w-full h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !passwordErrors,
+              'w-full h-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': passwordErrors
+            }"
+          >
+          <EyeIcon v-if="passwordType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
+          <EyeSlashIcon v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
+          <ExclamationCircleIcon v-if="passwordErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-red-500" />
+          <CheckCircleIcon v-if="!passwordErrors && passwordMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-green-500" />
+        </div>
+        <div class="pt-1 pl-2 text-xs text-red-500">
+          {{ passwordErrors }}
+        </div>
       </div>
       <div class="font-thin justify-self-center">
         Don't have an account? <NuxtLink to="/register" class="font-medium text-accent-500 hover:underline">
           Sign Up
         </NuxtLink>
       </div>
-      <PrimaryButton class="min-w-[75%] min-h-[40px] justify-self-center">
+      <PrimaryButton class="min-w-[75%] min-h-[40px] justify-self-center" @click="onSubmit">
         <LockClosedIcon class="inline h-4" />
         Sign in
       </PrimaryButton>
@@ -40,6 +67,32 @@
 </template>
 
 <script setup lang="ts">
-import { LockClosedIcon } from '@heroicons/vue/20/solid'
+import { LockClosedIcon, CheckCircleIcon, ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
+import { EnvelopeIcon } from '@heroicons/vue/24/outline'
+import { useForm, useField } from 'vee-validate'
+import * as yup from 'yup'
+
 definePageMeta({ layout: 'layout-login' })
+
+const schema = yup.object({
+  email: yup.string().required('Please enter your email').email('Your email must be valid'),
+  password: yup.string().required('Please enter a password')
+})
+
+const { handleSubmit } = useForm({
+  validationSchema: schema
+})
+const passwordType = ref<string>('password')
+
+const { value: email, errorMessage: emailErrors, meta: emailMeta } = useField<string>('email')
+const { value: password, errorMessage: passwordErrors, meta: passwordMeta } = useField<string>('password')
+
+const toggleShowPassword = () => {
+  passwordType.value = passwordType.value === 'password' ? 'text' : 'password'
+}
+
+const onSubmit = handleSubmit(() => {
+  // alert('JSON.stringify(value)')
+  alert('Password Successfully submitted')
+})
 </script>

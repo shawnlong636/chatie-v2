@@ -1,10 +1,12 @@
-import { describe, expect, test } from 'vitest'
-import { setup } from '@nuxt/test-utils'
+import { setup, $fetch } from '@nuxt/test-utils'
 
-describe('My test', async () => {
-  await setup()
+describe('Tests', async () => {
+  await setup({
+    configFile: '../nuxt.config.ts'
+  })
 
-  test('Math.sqrt()', () => {
-    expect(Math.sqrt(4)).toBe(2)
+  test('test', async () => {
+    const html = await $fetch('/')
+    expect(html).toContain('Chatie')
   })
 })
