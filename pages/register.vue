@@ -3,7 +3,7 @@
     <div class="hidden px-8 py-5 justify-stretch md:grid rounded-xl">
       <ChatieLogo class="ml-8 justify-self-start" />
       <div class="mt-6 grid grid-rows-3 grid-cols-[auto_1fr] grid-flow-row-dense gap-y-5 gap-x-2">
-        <CheckCircleIcon v-for="card in cards" :key="card.body" class="w-5 col-span-1 col-start-1 mt-1 text-accent justify-self-center" />
+        <IconCheckCircle v-for="card in cards" :key="card.body" class="w-5 col-span-1 col-start-1 mt-1 fill-accent justify-self-center" />
         <div v-for="card in cards" :key="card.body" class="col-span-1 col-start-2">
           <div class="text-xl">
             {{ card.header }}
@@ -37,8 +37,8 @@
                 'w-full max-w-full pr-6 h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !firstnameErrors
               }"
             >
-            <ExclamationCircleIcon v-if="firstnameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
-            <CheckCircleIcon v-if="!firstnameErrors && firstNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+            <IconExclamationCircle v-if="firstnameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-red-500" />
+            <IconCheckCircle v-if="!firstnameErrors && firstNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-green-500" />
           </div>
           <div class="pt-1 pl-2 text-xs text-red-500 ">
             {{ firstnameErrors }}
@@ -60,8 +60,8 @@
                 'w-full max-w-full pr-6 h-8 text-sm rounded-md focus:ring-accent focus:border-accent': !lastNameErrors
               }"
             >
-            <ExclamationCircleIcon v-if="lastNameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
-            <CheckCircleIcon v-if="!lastNameErrors && lastNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+            <IconExclamationCircle v-if="lastNameErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-red-500" />
+            <IconCheckCircle v-if="!lastNameErrors && lastNameMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-green-500" />
           </div>
           <div class="pt-1 pl-2 text-xs text-red-500">
             {{ lastNameErrors }}
@@ -72,7 +72,7 @@
       <div class="grid">
         <label for="email-address" class="text-sm font-medium">Email Address</label>
         <div class="relative">
-          <EnvelopeIcon class="absolute flex items-center w-5 h-full ml-2 text-gray-400 cursor-pointer" />
+          <IconEnvelopeOutline class="absolute flex items-center w-5 h-full ml-2 cursor-pointer stroke-gray-400" />
           <input
             id="email-address"
             v-model.lazy="email"
@@ -86,8 +86,8 @@
               'w-full h-8 pl-8 text-sm rounded-md focus:ring-accent focus:border-accent': !emailErrors
             }"
           >
-          <ExclamationCircleIcon v-if="emailErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-red-500" />
-          <CheckCircleIcon v-if="!emailErrors && emailMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-green-500" />
+          <IconExclamationCircle v-if="emailErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-red-500" />
+          <IconCheckCircle v-if="!emailErrors && emailMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-green-500" />
         </div>
         <div class="pt-1 pl-2 text-xs text-red-500">
           {{ emailErrors }}
@@ -108,10 +108,10 @@
               'w-full h-8 text-sm rounded-md border-red-500 focus:ring-red-500 focus:border-red-500': passwordErrors
             }"
           >
-          <EyeIcon v-if="passwordType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
-          <EyeSlashIcon v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowPassword" />
-          <ExclamationCircleIcon v-if="passwordErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-red-500" />
-          <CheckCircleIcon v-if="!passwordErrors && passwordMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-green-500" />
+          <IconEyeSolid v-if="passwordType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-gray-400 hover:fill-gray-500 active:fill-gray-600" @click="toggleShowPassword" />
+          <IconEyeSlash v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-gray-400 hover:fill-gray-500 active:fill-gray-600" @click="toggleShowPassword" />
+          <IconExclamationCircle v-if="passwordErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 fill-red-500" />
+          <IconCheckCircle v-if="!passwordErrors && passwordMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 fill-green-500" />
         </div>
         <div class="pt-1 pl-2 text-xs text-red-500">
           {{ passwordErrors }}
@@ -132,10 +132,10 @@
               'w-full border-red-500 h-8 text-sm rounded-md focus:ring-red-500 focus:border-red-500': confirmErrors
             }"
           >
-          <EyeIcon v-if="confirmType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowConfirm" />
-          <EyeSlashIcon v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 text-gray-400 hover:text-gray-500 active:text-gray-600" @click="toggleShowConfirm" />
-          <ExclamationCircleIcon v-if="confirmErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-red-500" />
-          <CheckCircleIcon v-if="!confirmErrors && confirmMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 text-green-500" />
+          <IconEyeSolid v-if="confirmType === 'password'" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-gray-400 hover:fill-gray-500 active:fill-gray-600" @click="toggleShowConfirm" />
+          <IconEyeSlash v-else class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-2 fill-gray-400 hover:fill-gray-500 active:fill-gray-600" @click="toggleShowConfirm" />
+          <IconExclamationCircle v-if="confirmErrors" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 fill-red-500" />
+          <IconCheckCircle v-if="!confirmErrors && confirmMeta.dirty" class="absolute inset-y-0 right-0 flex items-center w-4 h-full mr-8 fill-green-500" />
         </div>
         <div class="pt-1 pl-2 text-xs text-red-500">
           {{ confirmErrors }}
@@ -148,7 +148,7 @@
       </div>
 
       <PrimaryButton class="min-w-[75%] min-h-[40px] justify-self-center" @click="onSubmit">
-        <LockClosedIcon class="inline h-4" />
+        <IconLockClosed class="inline h-4 fill-white" />
         Create account
       </PrimaryButton>
     </div>
@@ -156,8 +156,6 @@
 </template>
 
 <script setup lang="ts">
-import { LockClosedIcon, CheckCircleIcon, ExclamationCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/vue/20/solid'
-import { EnvelopeIcon } from '@heroicons/vue/24/outline'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import YupPassword from 'yup-password'

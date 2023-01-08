@@ -1,14 +1,15 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  test: true,
   app: {
     head: {
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
-      title: 'chatie',
       htmlAttrs: {
         lang: 'en'
       },
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+      title: 'chatie',
       meta: [
         {
           name: 'description',
@@ -23,6 +24,9 @@ export default defineNuxtConfig({
   typescript: {
     shim: false,
     strict: true
+  },
+  build: {
+    transpile: ['@heroicons/vue']
   },
   modules: [
     '@nuxtjs/tailwindcss',

@@ -48,6 +48,7 @@
     </div>
   </NuxtLink>
 </template>
+
 <script setup lang="ts">
 export interface Props {
   showTitle?: boolean
